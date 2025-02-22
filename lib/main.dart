@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyCounterApp());
@@ -12,18 +13,14 @@ class MyCounterApp extends StatefulWidget {
 }
 
 class _MyCounterAppState extends State<MyCounterApp> {
-  var counter = 0;
+  RxInt counter = 0.obs;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if (mounted) {
-              setState(() {
-                counter++;
-              });
-            }
+            counter++;
           },
           child: Icon(Icons.add),
         ),
@@ -31,7 +28,7 @@ class _MyCounterAppState extends State<MyCounterApp> {
           title: Text('Home'),
         ),
         body: Center(
-          child: Text(counter.toString()),
+          child: Obx(() => Text(counter.toString())),
         ),
       ),
     );
