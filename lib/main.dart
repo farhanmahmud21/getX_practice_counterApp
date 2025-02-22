@@ -7,7 +7,8 @@ void main() {
 
 class MyCounterApp extends StatelessWidget {
   MyCounterApp({super.key});
-  RxInt counter = 0.obs;
+  // RxInt counter = 0.obs;
+  CounterController counterController = Get.put(CounterController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MyCounterApp extends StatelessWidget {
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            counter++;
+            counterController.increament();
           },
           child: Icon(Icons.add),
         ),
@@ -23,9 +24,16 @@ class MyCounterApp extends StatelessWidget {
           title: Text('Home'),
         ),
         body: Center(
-          child: Obx(() => Text(counter.toString())),
+          child: Obx(() => Text(counterController.counter.toString())),
         ),
       ),
     );
+  }
+}
+
+class CounterController extends GetxController {
+  RxInt counter = 0.obs;
+  void increament() {
+    counter++;
   }
 }
