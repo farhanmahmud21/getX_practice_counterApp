@@ -5,15 +5,10 @@ void main() {
   runApp(MyCounterApp());
 }
 
-class MyCounterApp extends StatefulWidget {
-  const MyCounterApp({super.key});
-
-  @override
-  State<MyCounterApp> createState() => _MyCounterAppState();
-}
-
-class _MyCounterAppState extends State<MyCounterApp> {
+class MyCounterApp extends StatelessWidget {
+  MyCounterApp({super.key});
   RxInt counter = 0.obs;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
