@@ -1,3 +1,4 @@
+import 'package:counter_app/another_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,7 @@ class MyCounterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -23,8 +24,20 @@ class MyCounterApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Home'),
         ),
-        body: Center(
-          child: Obx(() => Text(counterController.counter.toString())),
+        body: Column(
+          children: [
+            Center(
+              child: Obx(
+                () => Text(counterController.counter.toString()),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(AnotherScreen());
+              },
+              child: Text('Go to Another Screen'),
+            )
+          ],
         ),
       ),
     );
